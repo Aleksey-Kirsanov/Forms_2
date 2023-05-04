@@ -13,15 +13,39 @@ const UserPage = ({ userId }) => {
     const handleClick = () => {
         history.push("/users");
     };
+    const handleClickChange = () => {
+        history.push(`/users/${userId}/edit`);
+    };
     if (user) {
         return (
             <div>
                 <h1> {user.name}</h1>
                 <h2>Профессия: {user.profession.name}</h2>
                 <Qualities qualities={user.qualities} />
-                <p>completedMeetings: {user.completedMeetings}</p>
-                <h2>Rate: {user.rate}</h2>
-                <button onClick={handleClick}> Все Пользователи</button>
+                <p>Встретился раз: {user.completedMeetings}</p>
+                <h2>Рейтинг: {user.rate}</h2>
+                <div
+                    className="btn-group"
+                    role="group"
+                    aria-label="Basic mixed styles example"
+                >
+                    <button
+                        type="button"
+                        className="btn btn-outline-warning"
+                        onClick={handleClickChange}
+                    >
+                        {" "}
+                        Изменить
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-outline-success"
+                        onClick={handleClick}
+                    >
+                        {" "}
+                        Все Пользователи
+                    </button>
+                </div>
             </div>
         );
     } else {
